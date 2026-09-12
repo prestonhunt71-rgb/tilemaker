@@ -1,4 +1,4 @@
-import {bounds, filenameBase, availableName, imageMatrix, resolution} from "./geometry.mjs";
+import {bounds, filenameBase, availableName, imageMatrix, resolution, sourceDimensions} from "./geometry.mjs";
 
 const ID = "tilemaker";
 let session;
@@ -140,7 +140,7 @@ class SnipSession {
     if (canvas.scene !== this.scene || canvas.primary.backgroundSource !== this.source)
       throw new Error("The background changed. Cancel and start a new selection.");
     const source=this.source, mesh=this.mesh;
-    const iw=source.naturalWidth ?? source.videoWidth, ih=source.naturalHeight ?? source.videoHeight;
+    const {width:iw,height:ih}=sourceDimensions(source);
     if (!iw || !ih) throw new Error("The background image has not loaded.");
     const tex=mesh.texture.orig;
     const ax=mesh.anchor.x*tex.width, ay=mesh.anchor.y*tex.height;

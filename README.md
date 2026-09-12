@@ -1,4 +1,4 @@
-# TileMaker 0.1.0
+# TileMaker 0.1.1
 
 A GM tool for tracing part of the scene background, naming the cutout, saving a transparent PNG, and placing it as a movable tile.
 
@@ -39,7 +39,7 @@ Intended targets: Foundry 13 (including build 348) and Foundry 14 (current stabl
 
 The manifest declares minimum 13 and maximum 14. It intentionally omits a verified version pending live testing. Forward compatibility beyond version 14 is not claimed.
 
-Automated checks: nine passing Node tests covering geometry, transformed background coordinates, filename validation and collisions, scene-control registration, Forge picker selection, cleanup, and upload/placement retry behavior. Script syntax was checked.
+Automated checks: ten passing Node tests covering geometry, transformed background coordinates, filename validation and collisions, scene-control registration, Forge picker selection, cleanup, and upload/placement retry behavior. Script syntax was checked.
 
 Live Foundry/Forge testing has NOT been performed. The automated integration tests use mocks; they do not prove runtime pointer handling, pixel rendering, authenticated Forge uploads, or compatibility with other modules.
 

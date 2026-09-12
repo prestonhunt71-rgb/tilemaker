@@ -43,3 +43,21 @@ export function resolution(m) {
   return Math.sqrt((sum+Math.sqrt(Math.max(0,sum*sum-4*det*det)))/2)/Math.abs(det);
 }
 
+
+export function sourceDimensions(source) {
+  // HTML images/videos expose intrinsic dimensions; ImageBitmap and canvas
+  // sources instead expose width/height. Do not treat an unloaded image's
+  // CSS display size as decoded image data.
+  let width, height;
+  if (source && "naturalWidth" in source) {
+    width=source.naturalWidth; height=source.naturalHeight;
+  } else if (source && "videoWidth" in source) {
+    width=source.videoWidth; height=source.videoHeight;
+  } else {
+    width=source?.width; height=source?.height;
+  }
+  if (!Number.isFinite(width) || !Number.isFinite(height) || width<=0 || height<=0)
+    throw new Error("The background image has not loaded.");
+  return {width,height};
+}
+

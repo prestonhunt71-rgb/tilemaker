@@ -86,7 +86,7 @@ test("crop uses source pixels with polygon clipping and tight placement coordina
   ctx.document.createElement=()=>({getContext:()=>drawing});
   ctx.canvas.stage={toLocal:p=>p};
   ctx.canvas.primary={
-    backgroundSource:{naturalWidth:100,naturalHeight:100},
+    backgroundSource:{width:100,height:100},
     background:{texture:{orig:{width:100,height:100}},anchor:{x:0.5,y:0.5},
       toGlobal:p=>({x:p.x*2+200,y:p.y*2+300})}
   };
@@ -149,5 +149,19 @@ test("save retries placement without uploading a second asset", async () => {
   assert.equal(created.texture.src,"assets/Chair%20(2).png");
   assert.equal(created.width,30); assert.equal(created.flags.tilemaker.name,"Chair (2)");
   assert.equal(s.closed,true);
+});
+
+
+test("background dimensions support bitmap/canvas, image and video sources", () => {
+  for (const source of [
+    {width:800,height:600},
+    {naturalWidth:800,naturalHeight:600,width:80,height:60},
+    {videoWidth:800,videoHeight:600,width:80,height:60}
+  ]) assert.deepEqual(geometry.sourceDimensions(source),{width:800,height:600});
+  for (const source of [
+    null, {}, {width:0,height:600}, {width:800,height:NaN},
+    {naturalWidth:0,naturalHeight:0,width:800,height:600},
+    {videoWidth:0,videoHeight:0,width:800,height:600}
+  ]) assert.throws(()=>geometry.sourceDimensions(source),/has not loaded/);
 });
 
