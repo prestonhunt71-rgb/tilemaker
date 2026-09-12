@@ -1,0 +1,12 @@
+#tilemaker-outline { position: fixed; pointer-events: none; z-index: 60; }
+#tilemaker-bar { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 100; background: #20232b; color: #fff; padding: 12px 18px; border: 1px solid #74d6ff; border-radius: 8px; box-shadow: 0 3px 18px #0009; display: flex; gap: 12px; align-items: center; max-width: 90vw; }
+#tilemaker-bar button { width: auto; color: white; }
+.tilemaker-dialog { background: #20232b; color: #fff; border: 1px solid #74d6ff; border-radius: 10px; padding: 22px; width: min(500px,90vw); }
+.tilemaker-dialog::backdrop { background: #0008; }
+.tilemaker-dialog form { display: flex; flex-direction: column; gap: 12px; }
+.tilemaker-dialog img { max-height: 270px; max-width: 100%; object-fit: contain; background: repeating-conic-gradient(#454545 0% 25%,#666 0% 50%) 0 / 20px 20px; }
+.tilemaker-dialog input { background: #fff; color: #111; width: 100%; }
+.tilemaker-dialog footer { display: flex; gap: 12px; }
+.tilemaker-dialog p { overflow-wrap: anywhere; margin: 0; }
+.tilemaker-dialog [role=status] { color: #ffce83; }
+
